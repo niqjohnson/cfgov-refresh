@@ -45,9 +45,9 @@
 {% macro _nav_list( nav_depth, nav_groups ) %}
 {%- for group in nav_groups %}
 <div class="{{ _classes( nav_depth, '-list' ) }}">
-    {% if group.title %} 
-    <h3 class="h5 
-              {{ base_class ~ '_group-heading' }} 
+    {% if group.title %}
+    <h3 class="h5
+              {{ base_class ~ '_group-heading' }}
               {{ base_class ~ '_group-heading' ~ '__hidden' if group.hide_title else ''}} "
         {% if group.hide_title %} aria-hidden="true"{% endif %}>
         {{group.title | safe}}
@@ -74,6 +74,7 @@
                   {{ _classes( nav_depth, '-link__current' ) if item.url == request.path else '' }}"
            {{ '' if item.url == '' else 'href=' + item.url | e }}
            {{ 'data-js-hook=behavior_flyout-menu_trigger' if item.nav_groups | count > 0 else '' }}
+           {{ 'data-gtm_ignore=true' if nav_depth == 1 else '' }}
            {{ 'aria-pressed=false' if item.nav_groups | count > 0 else '' }}>
             {{ item.text }}
         </a>
@@ -156,7 +157,7 @@
                 {{ fmc }}
                 {% endif %}
             {% endfor %}
-         
+
         {# Close Wrapper if needed #}
         {{ '</div>' | safe if nav_depth > 1 else '' }}
     </div>
