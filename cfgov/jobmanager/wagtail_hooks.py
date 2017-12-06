@@ -1,5 +1,4 @@
 from django.forms.models import ModelForm
-from tinymce.widgets import TinyMCE
 from wagtail.contrib.modeladmin.options import (ModelAdmin, ModelAdminGroup,
                                                 modeladmin_register)
 from wagtail.contrib.modeladmin.views import CreateView, EditView, InspectView
@@ -24,9 +23,6 @@ class JobCategoryForm(ModelForm):
     class Meta:
         fields = '__all__'
         model = JobCategory
-        widgets = {
-            'blurb': TinyMCE(attrs={'cols': 80, 'rows': 15}),
-        }
 
 
 class JobCategoryModelFormMixin(object):

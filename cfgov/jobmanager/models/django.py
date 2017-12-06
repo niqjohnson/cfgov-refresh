@@ -2,6 +2,8 @@ from __future__ import absolute_import
 
 from django.db import models
 
+from wagtail.wagtailcore.fields import RichTextField
+
 
 class ApplicantType(models.Model):
     applicant_type = models.CharField(max_length=255)
@@ -28,7 +30,7 @@ class Grade(models.Model):
 
 class JobCategory(models.Model):
     job_category = models.CharField(max_length=255)
-    blurb = models.TextField(null=True, blank=True)
+    blurb = RichTextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.job_category
