@@ -43,7 +43,7 @@ tinys3==0.1.11
 unicodecsv==0.14.1
 unipath>=1.1,<=2.0
 wagtail==1.10.1
-wagtail-flags==2.0.6
+wagtail-flags==2.0.7
 wagtail-inventory==0.3
 wagtail-sharing==0.5
 Wand==0.4.2
