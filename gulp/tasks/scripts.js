@@ -94,18 +94,6 @@ function scriptsModern() {
 }
 
 /**
- * Bundle IE9-specific script.
- * @returns {PassThrough} A source stream.
- */
-function scriptsIE() {
-  return _processScript(
-    webpackConfig.commonConf,
-    '/js/ie/common.ie9.js',
-    '/js/ie/'
-  );
-}
-
-/**
  * Bundle external site scripts.
  * @returns {PassThrough} A source stream.
  */
@@ -215,7 +203,6 @@ function scriptsOAH() {
 gulp.task( 'scripts:polyfill', scriptsPolyfill );
 gulp.task( 'scripts:modern', scriptsModern );
 gulp.task( 'scripts:oah', scriptsOAH );
-gulp.task( 'scripts:ie', scriptsIE );
 gulp.task( 'scripts:external', scriptsExternal );
 gulp.task( 'scripts:spanish', scriptsSpanish );
 gulp.task( 'scripts:ondemand:header', scriptsOnDemandHeader );
@@ -232,7 +219,6 @@ gulp.task( 'scripts', [
   'scripts:polyfill',
   'scripts:modern',
   'scripts:oah',
-  'scripts:ie',
   'scripts:external',
   'scripts:nemo',
   'scripts:spanish'
