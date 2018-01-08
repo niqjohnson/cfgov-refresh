@@ -54,8 +54,8 @@ class MenuItem(models.Model):
             label="Featured content module"))
     ], blank=True)
 
-    footer = StreamField([
-        ('footer', blocks.StructBlock([
+    nav_footer = StreamField([
+        ('nav_footer', blocks.StructBlock([
             ('draft', blocks.BooleanBlock(required=False)),
             ('content', blocks.RichTextBlock(required=False))
         ]))
@@ -72,7 +72,7 @@ class MenuItem(models.Model):
         StreamFieldPanel('column_2'),
         StreamFieldPanel('column_3'),
         StreamFieldPanel('column_4'),
-        StreamFieldPanel('footer'),
+        StreamFieldPanel('nav_footer'),
     ]
 
     def __str__(self):
@@ -91,7 +91,7 @@ class MenuItem(models.Model):
                                         for col in cols])
         self.featured_content = self.nav_groups.pop() if len(self.nav_groups) \
             and self.nav_groups[-1].block_type == "featured_content" else None
-        self.footer = self.get_active_block(self.footer, draft)
+        self.footer = self.get_active_block(self.nav_footer, draft)
         return self
 
     @staticmethod

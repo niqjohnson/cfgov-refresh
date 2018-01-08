@@ -25,7 +25,7 @@ menu_items = [
             }
         },
         'footer':{  
-            'type':'footer',
+            'type':'nav_footer',
             'value': {
                 'content': '<p>Browse answers to hundreds of financial questions. <a href="/ask-cfpb/" class="o-mega-menu_content-link">Ask CFPB</a></p><p>Have an issue with a financial product? <a href="/complaint/" class="o-mega-menu_content-link">Submit a complaint</a></p>'
             },
@@ -205,7 +205,7 @@ menu_items = [
             }
         },
         'footer':{  
-            'type':'footer',
+            'type':'nav_footer',
             'value': {
                 'content': '<p><a href="https://pueblo.gpo.gov/CFPBPubs/CFPBPubs.php" class="o-mega-menu_content-link">Order free brochures</a></p>'
             }
@@ -761,8 +761,8 @@ def migrate_menu():
                 True,
             ))
         if item.get('footer'):
-            menu_item.footer = StreamValue(
-                menu_item.footer.stream_block,
+            menu_item.nav_footer = StreamValue(
+                menu_item.nav_footer.stream_block,
                 [item['footer']],
                 True,
             )
