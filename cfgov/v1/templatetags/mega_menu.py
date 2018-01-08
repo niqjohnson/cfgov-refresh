@@ -1,4 +1,4 @@
-from v1.models.snippets import MenuItem
+from v1.models.mega_menu import MenuItem
 from flags.template_functions import flag_enabled
 
 

@@ -1,6 +1,6 @@
 from wagtail.wagtailcore.blocks import StreamValue
 
-from v1.models.snippets import MenuItem
+from v1.models.mega_menu import MenuItem
 
 menu_items = [  
     {  
