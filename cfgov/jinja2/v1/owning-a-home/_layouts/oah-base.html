@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Owning a Home | Consumer Financial Protection Bureau
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ static('oah/main.css') }}">
+{% endblock css %}
+
+{% block banner_top %}
+  {% include "brand-header.html" %}
+{% endblock %}
+
+{% block content %}
+  This will be replaced in templates that extend this, and override "content".
+{% endblock %}
+
+{% block javascript %}
+{% set app_namespace = 'owning-a-home' %}
+{% set app_scripts = ['common.js','ratings-form.js'] %}
+
+{% include "javascript.html" %}
+
+{% endblock %}
+
+</html>

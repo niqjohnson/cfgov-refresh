@@ -82,7 +82,7 @@ function scriptsPolyfill() {
  * and factor out common modules into common.js.
  * @returns {PassThrough} A source stream.
  */
-function scriptsModern() {
+function scriptsRoutes() {
   return _processScript(
     webpackConfig.modernConf,
     '/js/routes/**/*.js',
@@ -197,24 +197,24 @@ function scriptsNemo() {
 }
 
 /**
- * Bundle scripts in /js/routes/apps/owning-a-home/
- * and factor out common modules into common.js.
+ * Bundle scripts in /js/apps/.
  * @returns {PassThrough} A source stream.
  */
-function scriptsOAH() {
+function scriptsApps() {
   return _processScript(
-    webpackConfig.owningAHomeConf,
-    '/js/routes/owning-a-home/**/*.js',
-    '/js/owning-a-home/'
+    webpackConfig.appsConf,
+    '/js/apps/**/*.js',
+    '/js/apps/'
   );
 }
 
 gulp.task( 'scripts:polyfill', scriptsPolyfill );
-gulp.task( 'scripts:modern', scriptsModern );
-gulp.task( 'scripts:oah', scriptsOAH );
+gulp.task( 'scripts:routes', scriptsRoutes );
+gulp.task( 'scripts:apps', scriptsApps );
 gulp.task( 'scripts:ie', scriptsIE );
 gulp.task( 'scripts:external', scriptsExternal );
 gulp.task( 'scripts:spanish', scriptsSpanish );
+gulp.task( 'scripts:nemo', scriptsNemo );
 gulp.task( 'scripts:ondemand:header', scriptsOnDemandHeader );
 gulp.task( 'scripts:ondemand:footer', scriptsOnDemandFooter );
 gulp.task( 'scripts:ondemand:nonresponsive', scriptsNonResponsive );
@@ -223,12 +223,11 @@ gulp.task( 'scripts:ondemand', [
   'scripts:ondemand:footer',
   'scripts:ondemand:nonresponsive'
 ] );
-gulp.task( 'scripts:nemo', scriptsNemo );
 
 gulp.task( 'scripts', [
   'scripts:polyfill',
-  'scripts:modern',
-  'scripts:oah',
+  'scripts:routes',
+  'scripts:apps',
   'scripts:ie',
   'scripts:external',
   'scripts:nemo',

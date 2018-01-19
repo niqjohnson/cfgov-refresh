@@ -1,0 +1,106 @@
+<script>
+    {# Minified dynamic JavaScript loader that injects a script tag in the head
+       of the page. It also provides a callback parameter. #}
+    function loadScript(t,e){var n=document.createElement('script');n.type='text/javascript',n.onload=function(){return e?e():null},n.src=t,document.getElementsByTagName('head')[0].appendChild(n)}
+
+    {#
+      Check and include namespaced JavaScript.
+      Namespaced JavaScript will appear in
+      cfgov/unprocessed/js/apps/[namespace].
+    #}
+
+    function loadScriptApp(){
+      {% macro app_js() %}
+        {# Modules common to all apps. #}
+        {% include 'js/apps/common.js' ignore missing %}
+      {% endmacro %}
+      {% set js_source = app_js() | trim %}
+      {% if js_source | length > 0 %}
+        console.log('loading…')
+        loadScript('{{ static('js/apps/common.js') }}',
+          function() {
+            console.log('Loaded!!')
+            {% if app_scripts is not undefined %}
+              {% for script_name in app_scripts %}
+                loadScript('{{ static('js/apps/' + app_namespace + '/' + script_name ) }}');
+              {% endfor %}
+            {% endif %}
+          }
+        );
+      {% endif %}
+
+
+    }
+
+    {#
+      Check and include component-level JavaScript.
+      Component-level JavaScript adds scripts appearing in
+      unprocessed/js/routes/on-demand/[component].js
+      to the page, based on what components were added in Wagtail.
+    #}
+    function loadScriptComponent(){
+      {% if page and page.media %}
+        {% for js in page.media %}
+          loadScript('{{ static('js/routes/on-demand/' + js) }}');
+        {% endfor %}
+      {% endif %}
+    }
+
+    {#
+      TODO: Remove the below blocks when all pages
+            using this template are moved to Wagtail.
+            This moves us away from a URL-dependant script inclusion scheme.
+    #}
+
+    {#
+      Check and include template-level JavaScript.
+      Template-level JavaScript applies to all pages under the URL scheme
+      www.consumerfinance.gov/[app-url]/
+      and JavaScript appears in unprocessed/js/routes/[app-url]/single.js.
+    #}
+    function loadScriptTemplate(){
+      {% macro template_js() %}
+        {% include 'js/routes/' + request.path.split('/')[1] + '/single.js' ignore missing %}
+      {% endmacro %}
+      {% set js_source = template_js() | trim %}
+      {% if js_source | length > 0 %}
+        loadScript('{{ static('js/routes/' + request.path.split('/')[1] + '/single.js') }}');
+      {% endif %}
+    }
+
+    {#
+      Check and include page-level JavaScript.
+      Page-level JavaScript applies to a single pages under the URL scheme
+      www.consumerfinance.gov/[app-url]/somepage
+      and JavaScript appears in unprocessed/js/routes/[app-url]/index.js.
+    #}
+    function loadScriptPage(){
+      {# Check and include page-level JavaScript. #}
+      {% macro page_js() %}
+        {% include 'js/routes/' + request.path[1:] + 'index.js' ignore missing %}
+      {% endmacro %}
+      {% set js_source = page_js() | trim %}
+      {% if js_source | length > 0 %}
+        loadScript('{{ static('js/routes/' + request.path[1:] + 'index.js') }}');
+      {% endif %}
+    }
+
+    {#
+      Modernizr adds a no-js class the HTML element if ECMAScript 5 features
+      are not available. Check for that CSS class here and act accordingly.
+    #}
+    if (document.body.parentElement.className.indexOf('no-js')===-1){
+      {# Include site-wide JavaScript. #}
+      loadScript('{{ static('js/routes/common.js') }}', function(){
+        loadScriptApp();loadScriptTemplate();
+        loadScriptComponent();loadScriptPage();
+      });
+    }
+</script>
+
+<script>
+//<![CDATA[
+    var usasearch_config = { siteHandle: 'cfpb' };
+    loadScript('https://search.usa.gov/javascripts/remote.loader.js');
+//]]>
+</script>

@@ -1,5 +1,6 @@
-const EmailPopup = require( '../../../organisms/EmailPopup' );
-const emailHelpers = require( '../../../modules/util/email-popup-helpers' );
+const EmailPopup = require( '../../organisms/EmailPopup' );
+const emailHelpers = require( '../../modules/util/email-popup-helpers' );
+
 const emailPopup = document.querySelectorAll( '.o-email-popup' );
 
 if ( emailPopup.length && emailHelpers.showEmailPopup() ) {
@@ -10,3 +11,5 @@ if ( emailPopup.length && emailHelpers.showEmailPopup() ) {
     targetElement: document.querySelector( '.o-info-unit-group' )
   } );
 }
+
+console.log('mortgage-estimate');

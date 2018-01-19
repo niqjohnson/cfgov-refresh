@@ -91,21 +91,17 @@ const modernConf = {
   ]
 };
 
+const appsConf = Object.assign(
+  modernConf, {
+    output: {
+      filename: '[name]',
+      jsonpFunction: 'app'
+    }
+  }
+);
+
 const onDemandHeaderRawConf = {
   module: COMMON_MODULE_CONFIG
-};
-
-const owningAHomeConf = {
-  cache: true,
-  module: COMMON_MODULE_CONFIG,
-  output: {
-    filename: '[name]',
-    jsonpFunction: 'OAH'
-  },
-  plugins: [
-    COMMON_CHUNK_CONFIG,
-    COMMON_UGLIFY_CONFIG
-  ]
 };
 
 const spanishConf = {
@@ -123,6 +119,6 @@ module.exports = {
   externalConf,
   modernConf,
   onDemandHeaderRawConf,
-  owningAHomeConf,
+  appsConf,
   spanishConf
 };

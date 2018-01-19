@@ -4,7 +4,7 @@
 
 const FormSubmit = require( '../../organisms/FormSubmit.js' );
 const validators = require( '../../modules/util/validators' );
-const ratingsForm = require( '../../apps/owning-a-home/ratings-form' );
+const ratingsForm = require( './ratings-form' );
 
 const BASE_CLASS = 'o-email-signup';
 const emailSignup = document.body.querySelector( '.' + BASE_CLASS );
@@ -26,3 +26,4 @@ if ( emailSignup ) {
 }
 
 ratingsForm.init();
+console.log( 'oah-common' );

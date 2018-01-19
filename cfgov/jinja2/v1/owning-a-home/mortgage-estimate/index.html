@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "_layouts/oah-base.html" %}
 {% import "molecules/social-media.html" as social_media with context %}
 {% set page={'search_description':"Our interactive sample form helps you double-check the details and get definitions for terms used on a Loan Estimate."} %}
 {% set active_page = "mortgage-estimate" %}
@@ -15,10 +15,9 @@
 {% endblock css %}
 
 {% block javascript %}
-    {{ super() }}
-    <script>
-        {% include 'js/owning-a-home/common.js' %}
-    </script>
+{% set app_namespace = 'owning-a-home' %}
+{% set app_scripts = ['common.js','mortgage-estimate.js'] %}
+{% include "javascript.html" %}
 {% endblock javascript %}
 
 {% block content %}
