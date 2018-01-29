@@ -117,10 +117,15 @@
         }
 
         &:before {
-            .cf-icon();
-
-            content: @cf-icon-search;
+            content: url( '../icons/search.svg' );
+            display: block;
+            width: 19px;
+            margin: 0 auto;
         }
+
+        .respond-to-max( @bp-xs-max, {
+            font-size: unit( 18px / 16px, em );
+        } );
 
         // Only show trigger if we have JS.
         .js & {
@@ -170,17 +175,13 @@
             height: unit( @mobile_trigger_ht__px / @base-font-size-px, em );
             min-width: unit( @mobile_trigger_ht__px / @base-font-size-px, em );
 
-            &:before {
-                font-size: unit( 20px / 16px, em );
-            }
-
             &[aria-expanded="true"] {
                 background: @gray-10;
                 border-left: 1px solid @gray-40;
 
                 // Show "X" icon when flyout is open.
                 &:before {
-                    content: @cf-icon-delete;
+                    content: url( '../icons/delete.svg' );
                 }
             }
         }
