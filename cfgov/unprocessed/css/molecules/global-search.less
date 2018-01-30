@@ -112,20 +112,34 @@
         box-sizing: border-box;
         border-left: 1px solid transparent;
 
+        .respond-to-max( @bp-xs-max, {
+            font-size: unit( @size-iv / @base-font-size-px, em );
+        } );
+
         &:focus {
             outline: 1px dotted @black;
         }
 
-        &:before {
+        /*&:before {
             content: url( '../icons/search.svg' );
-            display: block;
-            width: 19px;
+            display: inline-block;
+            width: unit( 19px / 16px, em );
             margin: 0 auto;
+            vertical-align: text-top;
+
+            .respond-to-min( @bp-sm-min, {
+                width: unit( 14px / 16px, em );
+                height: unit( 19px / 16px, em );
+            } );
+        }*/
+
+        &-open-label {
+            vertical-align: text-top;
         }
 
-        .respond-to-max( @bp-xs-max, {
-            font-size: unit( 18px / 16px, em );
-        } );
+        &-close-label {
+            display: none;
+        }
 
         // Only show trigger if we have JS.
         .js & {
@@ -179,9 +193,12 @@
                 background: @gray-10;
                 border-left: 1px solid @gray-40;
 
-                // Show "X" icon when flyout is open.
-                &:before {
-                    content: url( '../icons/delete.svg' );
+                .m-global-search_trigger-open-label {
+                    display: none;
+                }
+
+                .m-global-search_trigger-close-label {
+                    display: block;
                 }
             }
         }
@@ -211,11 +228,11 @@
     // Tablet and above.
     .respond-to-min( @bp-sm-min, {
         // Add "Search" text in trigger.
-        &_trigger-label:before {
+        /*&_trigger-label:before {
             .u-webfont-medium();
 
             content: 'Search';
-        }
+        }*/
     } );
 
     // Tablet size only.

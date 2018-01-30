@@ -116,6 +116,7 @@ def parse_links(value):
 
     # This adds the link markup
     link_tags = get_link_tags(soup)
+    shortcodes = get_shortcodes(soup)
     add_link_markup(link_tags)
 
     return soup
@@ -134,6 +135,13 @@ def is_image_tag(tag):
         if child.name in ['img', 'svg']:
             return True
     return False
+
+def get_shortcodes(soup):
+    #print soup
+    #print re.search('::(.+)::', soup)
+    #print soup.find_all(string=re.compile('::(.+)::'))
+    for match in soup.find_all(string=re.compile('::')):
+        print re.search('::(.+)::', match)
 
 
 EXTERNAL_LINK_PATTERN = re.compile(settings.EXTERNAL_LINK_PATTERN)
