@@ -19,7 +19,7 @@
             <span class="u-hide-on-mobile">Search</span>
         </span>
         <span class="m-global-search_trigger-close-label">
-            {% include 'icons/bullhorn.svg' %}
+            {% include 'icons/delete.svg' %}
             <span class="u-hide-on-mobile">Close</span>
         </span>
     </button>
@@ -49,13 +49,6 @@
                             {%include 'icons/search.svg' %}
                             <span class="u-visually-hidden">Search</span>
                        </label>
-                       <label for="query"
-                              class="input-contains-label_after
-                                     input-contains-label_after__clear
-                                     u-hidden">
-                            {% include 'icons/search.svg' %}
-                            <span class="u-visually-hidden">Close</span>
-                       </label>
                        <input id="query"
                               name="query"
                               type="text"
@@ -63,7 +56,13 @@
                               class="a-text-input"
                               value=""
                               placeholder="Search the CFPB">
-                   </div>
+                       <label for="query"
+                              class="input-contains-label_after
+                                     input-contains-label_after__clear
+                                     u-hidden">
+                            {% include 'icons/delete.svg' %}
+                            <span class="u-visually-hidden">Close</span>
+                       </label>                   </div>
                </div>
                <div class="o-form__input-w-btn_btn-container">
                    <button class="a-btn">Search</button>

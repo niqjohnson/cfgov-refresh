@@ -24,10 +24,10 @@ const postcssUnmq = require( 'postcss-unmq' );
  */
 function stylesModern() {
   return gulp.src( configStyles.cwd + configStyles.src )
-    .pipe( gulpNewer( {
-      dest:  configStyles.dest + '/main.css',
-      extra: configStyles.otherBuildTriggerFiles
-    } ) )
+    // .pipe( gulpNewer( {
+    //   dest:  configStyles.dest + '/main.css',
+    //   extra: configStyles.otherBuildTriggerFiles
+    // } ) )
     .pipe( gulpSourcemaps.init() )
     .pipe( gulpLess( configStyles.settings ) )
     .on( 'error', handleErrors.bind( this, { exitProcess: true } ) )

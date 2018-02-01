@@ -22,7 +22,7 @@
 
    value.heading.level:          The heading level (H2, H3, H4). Default: H3
 
-   value.heading.icon:           An optional cf-icons icon code that
+   value.heading.icon:           An optional cf-icons icon name that
                                  triggers the insertion of an icon before
                                  the heading.
 
@@ -88,11 +88,10 @@
             <a class="m-info-unit_heading-link"
                href="{{ parse_links( value.links[0].url ) | safe }}">
         {%- endif %}
-                <{{ value.heading.level -}}
-                    {%- if value.heading.icon -%}
-                        {{- ' class="cf-icon cf-icon-' ~ value.heading.icon ~ '"' -}}
-                    {%- endif -%}
-                >
+                <{{ value.heading.level -}}>
+                    {% if value.heading.icon %}
+                        {% include 'icons/' ~ value.heading.icon ~ '.svg' %}
+                    {% endif %}
                     {{ value.heading.text | safe }}
                 </{{ value.heading.level }}>
         {%- if link_image_and_heading %}
