@@ -14,12 +14,9 @@ class Migration(migrations.Migration):
             name='Agreement',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('file_name', models.TextField(max_length=255)),
-                ('pdf_size', models.IntegerField()),
-                ('txt_size', models.IntegerField()),
-                ('pdf_uri', models.URLField()),
-                ('txt_uri', models.URLField()),
-                ('effective_date', models.DateField()),
+                ('file_name', models.TextField(max_length=500)),
+                ('size', models.IntegerField()),
+                ('uri', models.URLField(max_length=500)),
                 ('description', models.TextField()),
             ],
         ),
@@ -27,10 +24,8 @@ class Migration(migrations.Migration):
             name='Issuer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.TextField(max_length=255)),
-                ('city', models.TextField(max_length=64)),
-                ('state', models.TextField(max_length=2)),
-                ('ffiec_regulator', models.TextField(max_length=16)),
+                ('name', models.TextField(max_length=500)),
+                ('slug', models.TextField(max_length=500)),
             ],
         ),
         migrations.AddField(
