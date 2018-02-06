@@ -70,7 +70,9 @@ urlpatterns = [
             url='/static/owning-a-home/resources/%(path)s', permanent=True)),
 
     url(r'^owning-a-home/closing-disclosure/',
-        include(oah.urls_for_prefix('closing-disclosure'))),
+        TemplateView.as_view(
+        template_name='owning-a-home/closing-disclosure/index.html'),
+        name='closing-disclosure'),
     url(r'^owning-a-home/explore-rates/',
         include(oah.urls_for_prefix('explore-rates'))),
     url(r'^owning-a-home/loan-estimate/',
